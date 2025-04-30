@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archiessence | پورتفولیوی حرفه‌ای</title>
+    <meta name="description" content="پورتفولیوی حرفه‌ای معماری با نمایش نمونه کارها، مقالات و اطلاعات تماس">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vazirmatn/moon-fontface@latest/fonts.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #18bc9c;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1920/1080?random=1');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin: 0 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: #15a589;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Articles Section */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .article-excerpt {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Modal for Image Gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Archiessence</a>
+            <ul class="nav-links">
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#about">درباره من</a></li>
+                <li><a href="#portfolio">نمونه کارها</a></li>
+                <li><a href="#articles">مقالات</a></li>
+                <li><a href="#contact">تماس</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>طراحی آینده با الهام از گذشته</h1>
+            <p>معماری که در آن سنت و مدرنیته در هماهنگی کامل قرار می‌گیرند</p>
+            <div>
+                <a href="#portfolio" class="btn">نمونه کارها</a>
+                <a href="#contact" class="btn btn-outline">تماس با من</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">درباره من</h2>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="https://picsum.photos/600/400?random=2" alt="عکس پروفایل معمار">
+            </div>
+            <div class="about-text">
+                <h3>من سعید شیرزاد هستم</h3>
+                <p>معمار با 3 سال تجربه در طراحی پروژه‌های مسکونی و داخلی . فارغ‌التحصیل رشته معماری از دانشگاه [نام
+                    دانشگاه] با تخصص در طراحی پایدار و معماری سبز. اعتقاد دارم که معماری خوب باید هم زیبا باشد و هم
+                    کارکردی، هم با محیط زیست سازگار باشد و هم پاسخگوی نیازهای ساکنان.</p>
+                <p>در طول این سال‌ها، روی پروژه‌های متنوعی از ویلاهای شخصی تا مجتمع‌های تجاری بزرگ کار کرده‌ام. هر پروژه
+                    برای من یک چالش جدید و فرصتی برای خلق فضایی منحصر به فرد است.</p>
+
+                <div class="skills">
+                    <h3>مهارت‌های تخصصی</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>طراحی مفهومی</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>طراحی سه‌بعدی</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>معماری پایدار</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <h2 class="section-title">نمونه کارها</h2>
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">همه</button>
+            <button class="filter-btn" data-filter="residential">مسکونی</button>
+            <button class="filter-btn" data-filter="commercial">تجاری</button>
+            <button class="filter-btn" data-filter="public">عمومی</button>
+        </div>
+        <div class="portfolio-grid" id="portfolio-grid">
+            <!-- Portfolio items will be added dynamically with JavaScript -->
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="section">
+        <h2 class="section-title">مقالات معماری</h2>
+        <div class="articles-grid">
+            <div class="article-card">
+                <img src="https://picsum.photos/600/400?random=3" alt="تصویر مقاله" class="article-img">
+                <div class="article-content">
+                    <span class="article-category">معماری پایدار</span>
+                    <h3 class="article-title">معماری سبز: راهکارهایی برای کاهش مصرف انرژی</h3>
+                    <p class="article-excerpt">در این مقاله به بررسی راهکارهای نوین در معماری سبز می‌پردازیم که
+                        می‌توانند مصرف انرژی در ساختمان‌ها را تا 40% کاهش دهند...</p>
+                    <a href="#" class="read-more">ادامه مطلب</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="https://picsum.photos/600/400?random=4" alt="تصویر مقاله" class="article-img">
+                <div class="article-content">
+                    <span class="article-category">طراحی داخلی</span>
+                    <h3 class="article-title">تأثیر نور طبیعی در طراحی فضاهای مسکونی</h3>
+                    <p class="article-excerpt">چگونه می‌توان با استفاده بهینه از نور طبیعی، فضایی دلنشین و پرانرژی خلق
+                        کرد؟ این مقاله به بررسی نمونه‌های موفق می‌پردازد...</p>
+                    <a href="#" class="read-more">ادامه مطلب</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <img src="https://picsum.photos/600/400?random=5" alt="تصویر مقاله" class="article-img">
+                <div class="article-content">
+                    <span class="article-category">معماری شهری</span>
+                    <h3 class="article-title">احیای بافت‌های تاریخی: چالش‌ها و فرصت‌ها</h3>
+                    <p class="article-excerpt">نگاهی به پروژه‌های موفق احیای بافت‌های تاریخی در شهرهای مختلف جهان و
+                        درس‌هایی که می‌توان از آنها آموخت...</p>
+                    <a href="#" class="read-more">ادامه مطلب</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">تماس با من</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>اطلاعات تماس</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span>example@architect.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <span>+98 21 1234 5678</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span>تهران، خیابان ولیعصر، پلاک 123</span>
+                    </div>
+                </div>
+                <h3>شبکه‌های اجتماعی</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="نام شما" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="آدرس ایمیل" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="موضوع">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="پیام شما" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">ارسال پیام</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="logo">Archiessence</a>
+            <ul class="footer-links">
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#about">درباره من</a></li>
+                <li><a href="#portfolio">نمونه کارها</a></li>
+                <li><a href="#articles">مقالات</a></li>
+                <li><a href="#contact">تماس</a></li>
+            </ul>
+            <p class="copyright">© 2023 تمام حقوق محفوظ است. طراحی شده با ♥ توسط [نام شما]</p>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-nav prev">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="modal-content">
+            <img src="" alt="" id="modalImage">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+        <div class="modal-nav next">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Portfolio Data
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "ویلای مدرن شمال",
+                location: "نوشهر، مازندران",
+                year: "1401",
+                description: "ویلایی دو طبقه با طراحی مدرن و استفاده از مصالح بومی",
+                type: "residential",
+                images: [
+                    { src: "https://picsum.photos/800/600?random=6", alt: "نمای خارجی ویلای شمال" },
+                    { src: "https://picsum.photos/800/600?random=7", alt: "حیاط ویلای شمال" },
+                    { src: "https://picsum.photos/800/600?random=8", alt: "سالن پذیرایی ویلای شمال" }
+                ]
+            },
+            {
+                id: 2,
+                title: "مجتمع تجاری ستاره",
+                location: "تهران، میدان ونک",
+                year: "1400",
+                description: "مجتمع تجاری با معماری معاصر و فضای سبز گسترده",
+                type: "commercial",
+                images: [
+                    { src: "https://picsum.photos/800/600?random=9", alt: "نمای خارجی مجتمع تجاری" },
+                    { src: "https://picsum.photos/800/600?random=10", alt: "لابی اصلی مجتمع" },
+                    { src: "https://picsum.photos/800/600?random=11", alt: "فضای سبز مجتمع" }
+                ]
+            },
+            {
+                id: 3,
+                title: "موزه هنرهای معاصر",
+                location: "اصفهان",
+                year: "1399",
+                description: "طراحی موزه با الهام از معماری سنتی اصفهان و تلفیق آن با المان‌های مدرن",
+                type: "public",
+                images: [
+                    { src: "https://picsum.photos/800/600?random=12", alt: "نمای اصلی موزه" },
+                    { src: "https://picsum.photos/800/600?random=13", alt: "سالن نمایش موزه" },
+                    { src: "https://picsum.photos/800/600?random=14", alt: "حیاط مرکزی موزه" }
+                ]
+            },
+            {
+                id: 4,
+                title: "آپارتمان مسکونی سبز",
+                location: "شیراز",
+                year: "1402",
+                description: "مجتمع مسکونی با رویکرد معماری پایدار و استفاده از انرژی‌های تجدیدپذیر",
+                type: "residential",
+                images: [
+                    { src: "https://picsum.photos/800/600?random=15", alt: "نمای خارجی مجتمع" },
+                    { src: "https://picsum.photos/800/600?random=16", alt: "سیستم پنل‌های خورشیدی" },
+                    { src: "https://picsum.photos/800/600?random=17", alt: "فضای سبز مشترک" }
+                ]
+            }
+        ];
+
+        // Render Portfolio Items
+        const portfolioGrid = document.getElementById('portfolio-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        function renderPortfolioItems(filter = 'all') {
+            portfolioGrid.innerHTML = '';
+
+            const filteredItems = filter === 'all'
+                ? portfolioItems
+                : portfolioItems.filter(item => item.type === filter);
+
+            filteredItems.forEach(item => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'portfolio-item';
+                portfolioItem.dataset.type = item.type;
+                portfolioItem.dataset.id = item.id;
+
+                portfolioItem.innerHTML = `
+                    <img src="${item.images[0].src}" alt="${item.images[0].alt}" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">${item.title}</h3>
+                        <p>${item.location} - ${item.year}</p>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+
+                portfolioItem.addEventListener('click', () => openPortfolioModal(item));
+                portfolioGrid.appendChild(portfolioItem);
+            });
+        }
+
+        // Filter Portfolio Items
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                renderPortfolioItems(button.dataset.filter);
+            });
+        });
+
+        // Portfolio Modal
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeModal = document.querySelector('.close-modal');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+
+        let currentItem = null;
+        let currentImageIndex = 0;
+
+        function openPortfolioModal(item) {
+            currentItem = item;
+            currentImageIndex = 0;
+            updateModal();
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateModal() {
+            modalImage.src = currentItem.images[currentImageIndex].src;
+            modalImage.alt = currentItem.images[currentImageIndex].alt;
+            modalCaption.textContent = `${currentItem.title} - تصویر ${currentImageIndex + 1} از ${currentItem.images.length}`;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentItem.images.length;
+            updateModal();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentItem.images.length) % currentItem.images.length;
+            updateModal();
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const formValues = Object.fromEntries(formData.entries());
+
+            console.log('Form submitted:', formValues);
+
+            // Here you would normally send the data to a server
+            // For demo purposes, we'll just show an alert
+            alert('پیام شما با موفقیت ارسال شد! به زودی با شما تماس خواهم گرفت.');
+
+            contactForm.reset();
+        });
+
+        // Initialize
+        renderPortfolioItems();
+    </script>
+</body>
+
+</html>
